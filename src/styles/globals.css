@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary-900: #0A1628;
+  --primary-800: #0F1E35;
+  --primary-700: #152842;
+  --primary-600: #1A334F;
+  --accent-cyan: #06B6D4;
+  --accent-blue: #3B82F6;
+  --accent-purple: #8B5CF6;
+  --accent-green: #10B981;
+  --success: #10B981;
+  --warning: #F59E0B;
+  --error: #EF4444;
+  --info: #3B82F6;
+  --gradient-primary: linear-gradient(135deg, #06B6D4 0%, #3B82F6 100%);
+  --gradient-secondary: linear-gradient(135deg, #8B5CF6 0%, #3B82F6 100%);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-primary-900 text-gray-100 antialiased;
+  background-color: var(--primary-900);
+}
