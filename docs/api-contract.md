@@ -94,7 +94,9 @@ Lista usuarios para gestión de créditos y roles.
 [
   {
     "id": "user_xxx",
+    "name": "Nombre Usuario",
     "email": "usuario@ejemplo.com",
+    "company": "Empresa S.A.",
     "role": "user",
     "credits": 10,
     "totalConsultas": 5,
@@ -104,6 +106,9 @@ Lista usuarios para gestión de créditos y roles.
 ```
 
 - `id`: ID de usuario (Clerk `user.id` o ID interno).
+- `name`: (opcional) Nombre para mostrar. Si no se envía, el frontend usa la parte local del email.
+- `email`: email del usuario.
+- `company`: (opcional) Empresa.
 - `role`: `"admin"` | `"user"`.
 - `credits`: créditos disponibles.
 - `totalConsultas`, `lastConsulta`: opcionales.

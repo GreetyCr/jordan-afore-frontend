@@ -7,7 +7,9 @@ export interface StatsOverview {
 
 export interface UserRow {
   id: string
+  name: string
   email: string
+  company?: string
   role: string
   credits: number
   totalConsultas?: number
@@ -24,4 +26,5 @@ export interface ConsultaRecord {
 
 export interface SystemControl {
   consultasEnabled: boolean
+  blockMessage?: string
 }

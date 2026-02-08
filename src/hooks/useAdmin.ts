@@ -37,8 +37,19 @@ export function useAdmin() {
       const url = getApiUrl('/api/admin/users')
       const res = await fetch(url)
       if (res.ok) {
-        const data = (await res.json()) as UserRow[]
-        setUsers(data)
+        const data = (await res.json()) as Array<Partial<UserRow> & { email: string }>
+        setUsers(
+          data.map((u) => ({
+            id: u.id ?? '',
+            name: u.name ?? u.email?.split('@')[0] ?? '—',
+            email: u.email ?? '',
+            company: u.company,
+            role: u.role ?? 'user',
+            credits: u.credits ?? 0,
+            totalConsultas: u.totalConsultas,
+            lastConsulta: u.lastConsulta,
+          }))
+        )
       }
     } catch {
       setUsers([])

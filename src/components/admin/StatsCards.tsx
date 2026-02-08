@@ -1,5 +1,5 @@
 import { Card } from '@/components/ui/Card'
-import { Users, Search, CheckCircle, Coins } from 'lucide-react'
+import { Users, FileText, CheckCircle, CreditCard } from 'lucide-react'
 import type { StatsOverview } from '@/types/admin.types'
 
 export interface StatsCardsProps {
@@ -7,30 +7,40 @@ export interface StatsCardsProps {
   loading?: boolean
 }
 
-const items = [
+const items: Array<{
+  key: keyof StatsOverview
+  label: string
+  icon: typeof Users
+  cardClass: string
+  labelClass: string
+}> = [
   {
-    key: 'totalUsers' as const,
-    label: 'Usuarios',
+    key: 'totalUsers',
+    label: 'Total Usuarios',
     icon: Users,
-    color: 'text-accent-cyan',
+    cardClass: 'bg-blue-900/40 border-blue-700/50',
+    labelClass: 'text-blue-300',
   },
   {
-    key: 'totalConsultas' as const,
-    label: 'Consultas',
-    icon: Search,
-    color: 'text-accent-blue',
+    key: 'totalConsultas',
+    label: 'Total Consultas',
+    icon: FileText,
+    cardClass: 'bg-emerald-900/40 border-emerald-700/50',
+    labelClass: 'text-emerald-300',
   },
   {
-    key: 'exitos' as const,
-    label: 'Éxitos',
+    key: 'exitos',
+    label: 'Exitosas',
     icon: CheckCircle,
-    color: 'text-accent-green',
+    cardClass: 'bg-teal-900/40 border-teal-700/50',
+    labelClass: 'text-teal-300',
   },
   {
-    key: 'creditosAsignados' as const,
-    label: 'Créditos asignados',
-    icon: Coins,
-    color: 'text-amber-400',
+    key: 'creditosAsignados',
+    label: 'Total Créditos',
+    icon: CreditCard,
+    cardClass: 'bg-violet-900/40 border-violet-700/50',
+    labelClass: 'text-violet-300',
   },
 ]
 
@@ -56,19 +66,22 @@ export function StatsCards({ stats, loading }: StatsCardsProps) {
   return (
     <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
       {items.map((item) => (
-        <Card key={item.key} variant="glass" padding="md">
-          <div className="flex items-center gap-3">
-            <div
-              className={`rounded-lg bg-primary-700 p-2 ${item.color}`}
-              aria-hidden
-            >
-              <item.icon className="w-6 h-6" />
-            </div>
+        <Card
+          key={item.key}
+          padding="md"
+          className={`border ${item.cardClass}`}
+        >
+          <div className="flex items-center justify-between gap-3">
             <div>
-              <p className="text-sm text-gray-400">{item.label}</p>
-              <p className="text-xl font-semibold text-gray-100">
+              <p className={`text-sm font-medium ${item.labelClass}`}>
+                {item.label}
+              </p>
+              <p className="text-2xl font-bold text-white mt-1">
                 {stats[item.key].toLocaleString()}
               </p>
+            </div>
+            <div className={`rounded-lg p-2.5 ${item.labelClass} bg-white/10`}>
+              <item.icon className="w-6 h-6" aria-hidden />
             </div>
           </div>
         </Card>
