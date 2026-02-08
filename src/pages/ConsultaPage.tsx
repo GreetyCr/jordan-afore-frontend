@@ -45,7 +45,7 @@ export function ConsultaPage() {
         <CreditPlansModal
           open={plansOpen}
           onClose={() => setPlansOpen(false)}
-          onSelectPlan={(planId, consultations, price) => {
+          onSelectPlan={(_planId, consultations, price) => {
             toast.success(
               `Plan seleccionado: ${consultations} consulta(s) — $${price} MXN. Próximamente: pasarela de pago.`
             )
