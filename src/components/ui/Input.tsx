@@ -68,7 +68,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         {label && (
           <label
             htmlFor={props.id}
-            className="block text-sm font-medium text-gray-300 mb-2"
+            className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
           >
             {label}
             {props.required && <span className="text-red-500 ml-1">*</span>}
@@ -77,7 +77,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
 
         <div className="relative">
           {icon && (
-            <div className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none">
+            <div className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 dark:text-gray-400 pointer-events-none">
               {icon}
             </div>
           )}
@@ -89,10 +89,10 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
             className={cn(
-              'w-full px-4 py-3 bg-primary-700 border rounded-lg',
-              'text-gray-100 placeholder-gray-500',
-              'transition-all duration-200',
-              'focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-primary-900',
+              'w-full px-4 py-3 border rounded-lg transition-all duration-200',
+              'bg-white text-gray-900 placeholder-gray-400 border-gray-300',
+              'dark:bg-primary-700 dark:text-gray-100 dark:placeholder-gray-500 dark:border-primary-600',
+              'focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 dark:focus:ring-offset-primary-900',
               icon && 'pl-10',
               showError && 'border-red-500 focus:ring-red-500',
               showSuccess && 'border-accent-green focus:ring-accent-green',
@@ -103,7 +103,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
               !showError &&
                 !showSuccess &&
                 !isFocused &&
-                'border-primary-600',
+                'dark:border-primary-600',
               props.disabled && 'opacity-50 cursor-not-allowed',
               className
             )}
@@ -121,7 +121,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         </div>
 
         {helperText && !showError && (
-          <p className="mt-2 text-sm text-gray-400 flex items-center gap-1">
+          <p className="mt-2 text-sm text-gray-500 dark:text-gray-400 flex items-center gap-1">
             <AlertCircle className="w-4 h-4 shrink-0" />
             {helperText}
           </p>

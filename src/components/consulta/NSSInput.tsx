@@ -22,7 +22,7 @@ export function NSSInput({
   return (
     <Input
       id={id}
-      label="NSS (opcional)"
+      label="NSS (Número de Seguridad Social) (Opcional)"
       type="text"
       inputMode="numeric"
       value={value}

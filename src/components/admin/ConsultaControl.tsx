@@ -43,23 +43,25 @@ export function ConsultaControl({
     <Card
       variant="default"
       padding="md"
-      className="border-primary-600 bg-primary-700/30"
+      className="dark:bg-primary-700/30"
     >
       <div className="flex items-start gap-3 mb-4">
         <AlertTriangle
-          className="w-5 h-5 text-amber-400 shrink-0 mt-0.5"
+          className="w-5 h-5 text-amber-500 dark:text-amber-400 shrink-0 mt-0.5"
           aria-hidden
         />
-        <h3 className="font-semibold text-gray-100">Control de Consultas</h3>
+        <h3 className="font-semibold text-gray-900 dark:text-gray-100">
+          Control de Consultas
+        </h3>
       </div>
 
       <div className="space-y-4 pl-8">
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div>
-            <p className="text-xs font-medium text-gray-400 uppercase tracking-wide">
+            <p className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide">
               Estado del Sistema
             </p>
-            <p className="text-sm text-gray-300 mt-0.5">
+            <p className="text-sm text-gray-600 dark:text-gray-300 mt-0.5">
               {enabled
                 ? 'Las consultas están funcionando normalmente'
                 : 'Las consultas están desactivadas'}
@@ -68,7 +70,9 @@ export function ConsultaControl({
           <div className="flex items-center gap-2">
             <span
               className={`text-sm font-medium ${
-                enabled ? 'text-emerald-400' : 'text-gray-400'
+                enabled
+                  ? 'text-emerald-600 dark:text-emerald-400'
+                  : 'text-gray-500 dark:text-gray-400'
               }`}
             >
               {enabled ? 'Activo' : 'Inactivo'}
@@ -77,6 +81,7 @@ export function ConsultaControl({
               type="button"
               role="switch"
               aria-checked={enabled}
+              aria-label={enabled ? 'Desactivar consultas' : 'Activar consultas'}
               disabled={loading || updating}
               onClick={handleToggle}
               className={`relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors focus:outline-none focus:ring-2 focus:ring-accent-cyan focus:ring-offset-2 focus:ring-offset-primary-800 disabled:opacity-50 ${
@@ -93,7 +98,7 @@ export function ConsultaControl({
         </div>
 
         <div>
-          <label className="block text-xs font-medium text-gray-400 uppercase tracking-wide mb-1.5">
+          <label className="block text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-1.5">
             Mensaje de Bloqueo (opcional)
           </label>
           <textarea
@@ -101,8 +106,8 @@ export function ConsultaControl({
             onChange={(e) => setBlockMessage(e.target.value)}
             onBlur={handleBlurMessage}
             rows={2}
-            className="w-full rounded-lg border border-primary-600 bg-primary-900/60 px-3 py-2 text-sm text-gray-300 placeholder-gray-500 focus:border-accent-cyan focus:outline-none focus:ring-1 focus:ring-accent-cyan"
-            placeholder="Mensaje que verán los usuarios cuando las consultas estén desactivadas"
+            className="w-full rounded-lg border border-gray-300 bg-gray-50 px-3 py-2 text-sm text-gray-900 placeholder-gray-400 focus:border-accent-cyan focus:outline-none focus:ring-1 focus:ring-accent-cyan dark:border-primary-600 dark:bg-primary-900/60 dark:text-gray-300 dark:placeholder-gray-500"
+            placeholder="Las consultas están temporalmente deshabilitadas por mantenimiento del servidor."
           />
         </div>
       </div>

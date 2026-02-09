@@ -15,17 +15,17 @@ export function ConsultaPage() {
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 sm:gap-10 lg:gap-16 mb-10">
           <div className="text-center sm:text-left">
-            <h1 className="text-3xl font-bold text-gray-100 sm:text-4xl">
-              Consulta tu AFORE
+            <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100 sm:text-4xl">
+              Consultar AFORE
             </h1>
-            <p className="mt-2 text-gray-400">
+            <p className="mt-2 text-gray-600 dark:text-gray-400">
               Ingresa tu CURP y opcionalmente tu NSS para consultar información.
             </p>
           </div>
           <div className="flex items-center justify-center sm:justify-end gap-2">
-            <div className="inline-flex items-center gap-2 rounded-lg bg-primary-700 border border-primary-600 px-4 py-2">
+            <div className="inline-flex items-center gap-2 rounded-lg bg-sky-50 border border-sky-200 px-4 py-2 dark:bg-primary-700 dark:border-primary-600">
               <Coins className="w-5 h-5 text-accent-cyan" aria-hidden />
-              <span className="text-sm font-medium text-gray-300">
+              <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
                 Créditos:
               </span>
               <span className="text-lg font-semibold text-accent-cyan">
@@ -35,8 +35,9 @@ export function ConsultaPage() {
             <Button
               variant="outline"
               size="md"
-              icon={<ShoppingCart className="w-5 h-5" />}
+              icon={<ShoppingCart className="w-5 h-5" aria-hidden />}
               onClick={() => setPlansOpen(true)}
+              className="border-emerald-500 text-emerald-600 hover:bg-emerald-50 dark:border-accent-cyan dark:text-accent-cyan dark:hover:bg-primary-700"
             >
               Comprar
             </Button>
@@ -57,7 +58,7 @@ export function ConsultaPage() {
           disabled={!isSignedIn}
         />
         {!isSignedIn && (
-          <p className="mt-4 text-center text-sm text-gray-500">
+          <p className="mt-4 text-center text-sm text-gray-600 dark:text-gray-500">
             Inicia sesión para usar tus créditos y realizar consultas.
           </p>
         )}

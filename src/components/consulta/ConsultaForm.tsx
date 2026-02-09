@@ -67,15 +67,15 @@ export function ConsultaForm({
       <Card variant="glass" padding="lg">
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
-            <h2 className="text-xl font-semibold text-gray-100">
-              Consultar AFORE
+            <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100">
+              Nueva Consulta
             </h2>
             <div className="flex items-center gap-4 text-sm">
-              <span className="text-gray-400">
+              <span className="text-gray-600 dark:text-gray-400">
                 Créditos: <strong className="text-accent-cyan">{credits}</strong>
               </span>
               {consultasRealizadas > 0 && (
-                <span className="text-gray-400">
+                <span className="text-gray-600 dark:text-gray-400">
                   Realizadas: {consultasRealizadas}
                 </span>
               )}
@@ -101,9 +101,10 @@ export function ConsultaForm({
             size="lg"
             loading={loading}
             loadingText="Consultando..."
-            icon={<Search className="w-5 h-5" />}
+            icon={<Search className="w-5 h-5" aria-hidden />}
             disabled={!canSubmit}
             className="w-full sm:w-auto"
+            aria-busy={loading}
           >
             Consultar AFORE
           </Button>

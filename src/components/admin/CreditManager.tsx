@@ -36,7 +36,7 @@ export function CreditManager({ user, onUpdateCredits }: CreditManagerProps) {
         type="button"
         disabled={loading}
         onClick={() => add(1)}
-        className="inline-flex h-8 w-8 items-center justify-center rounded-md bg-accent-blue text-white hover:bg-blue-600 disabled:opacity-50 transition-colors"
+        className="inline-flex h-8 w-8 items-center justify-center rounded-md bg-accent-blue text-white hover:bg-blue-600 disabled:opacity-50 transition-colors focus:outline-none focus:ring-2 focus:ring-accent-cyan focus:ring-offset-2 focus:ring-offset-primary-800"
         aria-label="Añadir 1 crédito"
       >
         <Plus className="w-4 h-4" />
@@ -45,7 +45,8 @@ export function CreditManager({ user, onUpdateCredits }: CreditManagerProps) {
         type="button"
         disabled={loading}
         onClick={() => add(5)}
-        className="inline-flex h-8 items-center justify-center rounded-md border border-primary-500 bg-primary-700 px-2.5 text-sm font-medium text-gray-300 hover:bg-primary-600 disabled:opacity-50 transition-colors"
+        className="inline-flex h-8 items-center justify-center rounded-md border border-primary-500 bg-primary-700 px-2.5 text-sm font-medium text-gray-300 hover:bg-primary-600 disabled:opacity-50 transition-colors focus:outline-none focus:ring-2 focus:ring-accent-cyan focus:ring-offset-2 focus:ring-offset-primary-800"
+        aria-label="Añadir 5 créditos"
       >
         +5
       </button>
@@ -53,7 +54,8 @@ export function CreditManager({ user, onUpdateCredits }: CreditManagerProps) {
         type="button"
         disabled={loading}
         onClick={() => add(10)}
-        className="inline-flex h-8 items-center justify-center rounded-md border border-primary-500 bg-primary-700 px-2.5 text-sm font-medium text-gray-300 hover:bg-primary-600 disabled:opacity-50 transition-colors"
+        className="inline-flex h-8 items-center justify-center rounded-md border border-primary-500 bg-primary-700 px-2.5 text-sm font-medium text-gray-300 hover:bg-primary-600 disabled:opacity-50 transition-colors focus:outline-none focus:ring-2 focus:ring-accent-cyan focus:ring-offset-2 focus:ring-offset-primary-800"
+        aria-label="Añadir 10 créditos"
       >
         +10
       </button>
@@ -61,7 +63,7 @@ export function CreditManager({ user, onUpdateCredits }: CreditManagerProps) {
         type="button"
         disabled={loading || user.credits <= 0}
         onClick={subtract}
-        className="inline-flex h-8 w-8 items-center justify-center rounded-md border border-red-800 bg-red-900/40 text-red-400 hover:bg-red-900/60 disabled:opacity-50 transition-colors"
+        className="inline-flex h-8 w-8 items-center justify-center rounded-md border border-red-800 bg-red-900/40 text-red-400 hover:bg-red-900/60 disabled:opacity-50 transition-colors focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-primary-800"
         aria-label="Quitar 1 crédito"
       >
         <Minus className="w-4 h-4" />

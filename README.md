@@ -42,6 +42,8 @@ Edita `.env.local`:
 
 Opcionales: `VITE_ENABLE_ANALYTICS`, `VITE_ENABLE_DEBUG`.
 
+**Configuración de Clerk (llaves y rol admin):** [docs/CLERK-SETUP.md](./docs/CLERK-SETUP.md).
+
 **Importante:** No subas `.env` ni `.env.local` al repositorio. Solo `.env.example` está versionado.
 
 ## Desarrollo

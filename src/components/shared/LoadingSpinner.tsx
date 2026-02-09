@@ -12,6 +12,9 @@ export function LoadingSpinner({ message, className }: LoadingSpinnerProps) {
         'flex items-center justify-center min-h-[400px]',
         className
       )}
+      role="status"
+      aria-live="polite"
+      aria-busy="true"
     >
       <div className="text-center">
         <div
@@ -19,7 +22,7 @@ export function LoadingSpinner({ message, className }: LoadingSpinnerProps) {
           aria-hidden
         />
         {message && (
-          <p className="mt-4 text-gray-400" role="status">
+          <p className="mt-4 text-gray-400 dark:text-gray-500">
             {message}
           </p>
         )}

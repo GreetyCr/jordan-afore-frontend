@@ -7,6 +7,7 @@ import '@/styles/globals.css'
 import App from './App'
 import { MockAuthProvider } from '@/contexts/AuthContext'
 import { ClerkAuthBridge } from '@/contexts/ClerkAuthBridge'
+import { ThemeProvider } from '@/contexts/ThemeContext'
 
 const clerkPubKey = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
 const disableClerk =
@@ -21,46 +22,68 @@ if (!disableClerk && !clerkPubKey) {
 function Root() {
   if (disableClerk) {
     return (
-      <MockAuthProvider>
-        <Toaster
-          position="top-right"
-          toastOptions={{
-            className: 'bg-primary-800 border border-primary-600 text-gray-100',
-          }}
-        />
-        <App />
-      </MockAuthProvider>
+      <ThemeProvider>
+        <MockAuthProvider>
+          <Toaster
+            position="top-right"
+            toastOptions={{
+              className: 'bg-primary-800 border border-primary-600 text-gray-100',
+            }}
+          />
+          <App />
+        </MockAuthProvider>
+      </ThemeProvider>
     )
   }
 
   return (
     <ClerkProvider
       publishableKey={clerkPubKey}
+      signInFallbackRedirectUrl="/"
+      signUpFallbackRedirectUrl="/"
       appearance={{
         baseTheme: dark,
         variables: {
           colorPrimary: '#06B6D4',
-          colorBackground: '#0A1628',
-          colorInputBackground: '#152842',
-          colorInputText: '#F3F4F6',
+          colorBackground: '#0F1E35',
+          colorInput: '#152842',
+          colorInputForeground: '#F3F4F6',
+          colorForeground: '#F3F4F6',
+          colorMutedForeground: '#9CA3AF',
+          colorBorder: '#1A334F',
+          colorDanger: '#EF4444',
         },
         elements: {
           formButtonPrimary:
-            'bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600',
-          card: 'bg-primary-800 border border-primary-600',
+            'bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white',
+          card: 'bg-primary-800 border border-primary-600 shadow-xl',
+          cardBox: 'bg-primary-800',
           headerTitle: 'text-cyan-400',
           headerSubtitle: 'text-gray-400',
+          formFieldLabel: 'text-gray-200',
+          formFieldInput: 'text-gray-100 bg-primary-700',
+          formFieldInputShowPasswordButton: 'text-gray-400 hover:text-gray-200',
+          identityPreviewEditButton: 'text-cyan-400 hover:text-cyan-300',
+          footerActionLink: 'text-cyan-400 hover:text-cyan-300',
+          socialButtonsBlockButton: 'bg-primary-700 text-gray-100 border-primary-600',
+          dividerLine: 'bg-primary-600',
+          dividerText: 'text-gray-400',
+          formFieldHintText: 'text-amber-400',
+          otpCodeFieldInput: 'text-gray-100 bg-primary-700 border-primary-600',
+          formFieldAction: 'text-cyan-400 hover:text-cyan-300',
         },
       }}
     >
       <ClerkAuthBridge>
-        <Toaster
-          position="top-right"
-          toastOptions={{
-            className: 'bg-primary-800 border border-primary-600 text-gray-100',
-          }}
-        />
-        <App />
+        <ThemeProvider>
+          <Toaster
+            position="top-right"
+            toastOptions={{
+              className: 'bg-primary-800 border border-primary-600 text-gray-100',
+            }}
+          />
+          <App />
+        </ThemeProvider>
       </ClerkAuthBridge>
     </ClerkProvider>
   )

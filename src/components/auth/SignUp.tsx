@@ -8,7 +8,7 @@ const isPreviewMode =
 export function SignUp() {
   if (isPreviewMode) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-primary-900 p-4">
+      <div className="min-h-screen flex flex-col items-center justify-center bg-primary-800 p-4">
         <p className="text-gray-400 text-center max-w-sm mb-4">
           Vista previa: la autenticación está deshabilitada.
         </p>
@@ -23,7 +23,7 @@ export function SignUp() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-primary-900 p-4">
+    <div className="min-h-screen flex items-center justify-center bg-primary-800 p-4">
       <ClerkSignUp
         routing="path"
         path="/sign-up"

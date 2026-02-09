@@ -23,7 +23,11 @@ export function ClerkAuthBridge({ children }: { children: ReactNode }) {
       isLoaded: true,
       isSignedIn: !!user,
       user: user
-        ? { id: user.id, email: user.primaryEmailAddress?.emailAddress }
+        ? {
+            id: user.id,
+            email: user.primaryEmailAddress?.emailAddress,
+            username: user.username ?? null,
+          }
         : null,
       role,
       credits,

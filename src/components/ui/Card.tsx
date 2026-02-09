@@ -20,10 +20,12 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
     ref
   ) => {
     const variants = {
-      default: 'bg-primary-800 border border-primary-600',
-      glass: 'bg-primary-800/50 backdrop-blur-md border border-primary-600/50',
+      default:
+        'bg-white border border-gray-200 shadow-sm dark:bg-primary-800 dark:border-primary-600',
+      glass:
+        'bg-white/90 backdrop-blur-md border border-gray-200 shadow-sm dark:bg-primary-800/50 dark:border-primary-600/50',
       gradient:
-        'bg-gradient-to-br from-primary-800 to-primary-900 border border-primary-600',
+        'bg-gradient-to-br from-gray-50 to-white border border-gray-200 shadow-sm dark:from-primary-800 dark:to-primary-900 dark:border-primary-600',
     }
 
     const paddings = {

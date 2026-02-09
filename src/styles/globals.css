@@ -24,6 +24,42 @@ html {
 }
 
 body {
-  @apply bg-primary-900 text-gray-100 antialiased;
-  background-color: var(--primary-900);
+  @apply bg-gray-50 text-gray-900 antialiased dark:bg-primary-900 dark:text-gray-100;
+}
+
+/* Accesibilidad: anillo de foco visible al navegar con teclado */
+:focus-visible {
+  @apply outline-none ring-2 ring-accent-cyan ring-offset-2 ring-offset-gray-50 dark:ring-offset-primary-900;
+}
+
+
+/* Clerk: texto "Optional" visible como aviso (cl-formFieldHintText) */
+.cl-formFieldHintText[data-localization-key="formFieldHintText__optional"],
+.cl-formFieldHintText__firstName,
+.cl-formFieldHintText__lastName {
+  color: #f59e0b !important;
+}
+
+/* Clerk: textos visibles en tema oscuro (login, registro, verificación por código) */
+.cl-root,
+.cl-card,
+.cl-cardBox {
+  color: #f3f4f6 !important;
+}
+.cl-card p,
+.cl-card span,
+.cl-card label,
+.cl-card div[class*="formField"],
+.cl-card input,
+.cl-card button:not([class*="primary"]) {
+  color: #f3f4f6 !important;
+}
+.cl-card input::placeholder {
+  color: #9ca3af !important;
+}
+.cl-card a {
+  color: #06b6d4 !important;
+}
+.cl-card a:hover {
+  color: #22d3ee !important;
 }

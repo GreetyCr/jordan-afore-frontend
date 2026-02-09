@@ -9,6 +9,7 @@ import type { UserRole } from '@/types/user.types'
 export interface AuthUser {
   id: string
   email?: string
+  username?: string | null
 }
 
 export interface AuthState {

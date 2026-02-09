@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { SignIn as ClerkSignIn } from '@clerk/clerk-react'
 
 const isPreviewMode =
@@ -6,6 +6,10 @@ const isPreviewMode =
   !import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
 
 export function SignIn() {
+  const location = useLocation()
+  const from = (location.state as { from?: { pathname: string } })?.from?.pathname
+  const afterSignInUrl = from ?? '/'
+
   if (isPreviewMode) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center bg-primary-900 p-4">
@@ -23,12 +27,12 @@ export function SignIn() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-primary-900 p-4">
+    <div className="min-h-screen flex items-center justify-center bg-primary-800 p-4">
       <ClerkSignIn
         routing="path"
         path="/sign-in"
         signUpUrl="/sign-up"
-        afterSignInUrl="/"
+        afterSignInUrl={afterSignInUrl}
       />
     </div>
   )
