@@ -39,18 +39,13 @@ function Root() {
   return (
     <ClerkProvider
       publishableKey={clerkPubKey}
-      signInFallbackRedirectUrl="/"
-      signUpFallbackRedirectUrl="/"
+      afterSignInUrl="/"
+      afterSignUpUrl="/"
       appearance={{
         baseTheme: dark,
         variables: {
           colorPrimary: '#06B6D4',
           colorBackground: '#0F1E35',
-          colorInput: '#152842',
-          colorInputForeground: '#F3F4F6',
-          colorForeground: '#F3F4F6',
-          colorMutedForeground: '#9CA3AF',
-          colorBorder: '#1A334F',
           colorDanger: '#EF4444',
         },
         elements: {
