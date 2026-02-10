@@ -14,7 +14,7 @@ const nav = [
 export function Header() {
   const [open, setOpen] = useState(false)
   const location = useLocation()
-  const { isSignedIn, role, user } = useAuthState()
+  const { isSignedIn, role, user, isPreviewMode } = useAuthState()
   const { theme, toggleTheme } = useTheme()
   const isAdmin = role === 'admin'
 
@@ -77,14 +77,20 @@ export function Header() {
                   {userLabel}
                 </span>
               )}
-              <UserButton
-                afterSignOutUrl="/"
-                appearance={{
-                  elements: {
-                    avatarBox: 'w-8 h-8',
-                  },
-                }}
-              />
+              {isPreviewMode ? (
+                <span className="rounded-full bg-primary-600 px-2.5 py-1 text-xs font-medium text-gray-200">
+                  Sin login
+                </span>
+              ) : (
+                <UserButton
+                  afterSignOutUrl="/"
+                  appearance={{
+                    elements: {
+                      avatarBox: 'w-8 h-8',
+                    },
+                  }}
+                />
+              )}
             </div>
           ) : (
             <>

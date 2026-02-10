@@ -41,6 +41,10 @@ function Root() {
       publishableKey={clerkPubKey}
       afterSignInUrl="/"
       afterSignUpUrl="/"
+      allowedRedirectOrigins={[
+        'https://jordan-afore-frontend.vercel.app',
+        'http://localhost:5173',
+      ]}
       appearance={{
         baseTheme: dark,
         variables: {

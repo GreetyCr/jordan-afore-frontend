@@ -18,6 +18,8 @@ export interface AuthState {
   user: AuthUser | null
   role: UserRole
   credits: number
+  /** true cuando Clerk está deshabilitado y se usa MockAuthProvider (vista previa) */
+  isPreviewMode?: boolean
 }
 
 const defaultState: AuthState = {
@@ -35,13 +37,18 @@ export function useAuthState(): AuthState {
   return ctx ?? defaultState
 }
 
-/** Modo sin Clerk: muestra la app sin auth para vista previa / demo */
+/** Modo sin Clerk: acceso total a la UI para vista previa (Consulta + Admin) sin login */
 const MOCK_AUTH_STATE: AuthState = {
   isLoaded: true,
-  isSignedIn: false,
-  user: null,
-  role: 'user',
-  credits: 0,
+  isSignedIn: true,
+  user: {
+    id: 'preview',
+    email: 'vista-previa@demo',
+    username: 'Vista previa',
+  },
+  role: 'admin',
+  credits: 5,
+  isPreviewMode: true,
 }
 
 export function MockAuthProvider({ children }: { children: ReactNode }) {

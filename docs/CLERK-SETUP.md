@@ -17,6 +17,14 @@ VITE_CLERK_PUBLISHABLE_KEY=pk_test_xxxxx
 VITE_DISABLE_CLERK=false
 ```
 
+**Vista previa sin login (solo UI):** Si quieres ver toda la interfaz (Consulta, Administración) sin configurar Clerk ni iniciar sesión, pon en `.env.local`:
+
+```bash
+VITE_DISABLE_CLERK=true
+```
+
+Con esto la app entra en modo vista previa: podrás navegar por todas las pantallas y ver el diseño. En la barra se mostrará "Vista previa" y un badge "Sin login". Cuando vayas a integrar tu backend en Python, cambia a `VITE_DISABLE_CLERK=false` y añade tu `VITE_CLERK_PUBLISHABLE_KEY`.
+
 No uses `CLERK_SECRET_KEY` en este proyecto frontend; solo se usa en servidores (Next.js API, etc.).
 
 ### Vercel
@@ -128,10 +136,64 @@ Si intentas entrar a `/admin` sin ser admin, verás "Acceso denegado". Si no has
 
 ---
 
-## 8. Pruebas rápidas
+## 8. Probar login en el deploy (Vercel)
+
+Si no puedes probar en localhost o quieres probar el flujo en la URL pública (p. ej. `https://jordan-afore-frontend.vercel.app`), haz lo siguiente.
+
+### 8.1 Variables en Vercel
+
+1. Vercel → tu proyecto → **Settings** → **Environment Variables**.
+2. Asegúrate de tener:
+   - `VITE_CLERK_PUBLISHABLE_KEY` = tu clave (por ejemplo `pk_test_...` para desarrollo).
+   - `VITE_DISABLE_CLERK` = `false`.
+3. Aplica a **Production** y **Preview** y vuelve a desplegar si acabas de añadirlas.
+
+### 8.2 Clerk Dashboard: Paths (Component paths)
+
+Para que Clerk use las páginas de login/registro de **tu** deploy (y no solo de localhost):
+
+1. Entra a [Clerk Dashboard](https://dashboard.clerk.com) → tu app → modo **Development**.
+2. **Configure** → **Paths** (pestaña **Component paths**).
+3. **`<SignIn />`**: elige **"Sign-in page on development host"** y pon la URL **completa** del deploy:
+   - `https://jordan-afore-frontend.vercel.app/sign-in`
+4. **`<SignUp />`**: igual, **"Sign-up page on development host"** con:
+   - `https://jordan-afore-frontend.vercel.app/sign-up`
+5. Si hay **Signing out**, puedes poner **"Page on development host"** con:
+   - `https://jordan-afore-frontend.vercel.app/sign-in`
+6. Guarda.
+
+Si quieres usar **tanto** localhost **como** el deploy, en algunos flujos tendrás que cambiar esta URL según dónde estés probando, o ver si tu versión del Dashboard permite más de una URL.
+
+### 8.3 Clerk Dashboard: Allowed redirect URLs / dominios
+
+Para que después de iniciar sesión o registrarse Clerk pueda redirigir de vuelta a tu app en Vercel:
+
+1. En el mismo Dashboard → **Configure** → **Paths** (o **Domains** / **Redirect URLs**, según tu versión).
+2. Donde se configuren “Allowed redirect URLs”, “Redirect allowlist” o dominios permitidos, añade:
+   - `https://jordan-afore-frontend.vercel.app`
+   - `https://jordan-afore-frontend.vercel.app/`
+3. Guarda.
+
+### 8.4 En la app (opcional)
+
+La app ya incluye `allowedRedirectOrigins` con la URL del deploy para que Clerk acepte redirigir ahí tras login/registro. No hace falta cambiar nada más si usas la URL indicada.
+
+### 8.5 Probar
+
+1. Abre `https://jordan-afore-frontend.vercel.app/sign-in`.
+2. Regístrate o inicia sesión.
+3. Tras completar (y la verificación por correo si está activa), deberías volver a la home del deploy con sesión iniciada.
+
+Si algo falla, revisa la consola del navegador (F12) y que en Vercel las variables estén bien y el deploy sea reciente.
+
+---
+
+## 9. Pruebas rápidas
 
 1. Con las llaves en `.env.local` y `VITE_DISABLE_CLERK=false`: `pnpm dev`.
 2. Registrarse desde "Registrarse" → deberías volver a la home con sesión iniciada y avatar en el navbar.
 3. Cerrar sesión (avatar → Sign out) → deberían aparecer de nuevo "Iniciar sesión" y "Registrarse".
 4. Sin rol admin: no debe aparecer "Administración"; entrar a `/admin` debe redirigir a sign-in o mostrar "Acceso denegado" si ya estás logueado.
 5. En Clerk Dashboard, dar a un usuario `role: "admin"` → recargar la app → debe aparecer "Administración" y poder entrar a `/admin`.
+
+Para probar desde el deploy en Vercel, sigue la sección **8. Probar login en el deploy**.
